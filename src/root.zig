@@ -9,13 +9,12 @@
 //!              string a person can read back
 //!   `handle`   64 bits, unique inside one table, and free to mint
 //!
-//! They are the same idea at different prices. A `Uuid` costs sixteen bytes
-//! and a random number generator, and in exchange it is still the right name
-//! next year, on another machine, in a file nobody has opened yet. A `TypeId`
-//! adds a few characters and says what the id is *for*, which is what turns a
-//! log line back into something a person can act on. A handle costs eight
-//! bytes and a bounds check, and means nothing at all outside the table that
-//! issued it - but resolving one is an array index, not a lookup.
+//! The same idea at different prices. A `Uuid` costs sixteen bytes and a random
+//! number generator, and is still the right name next year on another machine.
+//! A `TypeId` adds a few characters and says what the id is *for*, which turns
+//! a log line into something a person can act on. A handle costs eight bytes
+//! and means nothing outside the table that issued it - but resolving one is an
+//! array index, not a lookup.
 //!
 //! Most things want more than one. An asset has a `Uuid` in the file it was
 //! built from, a `TypeId` in the URL that serves it, and a handle in the

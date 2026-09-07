@@ -7,13 +7,12 @@
 //! process, for as long as that entry lives - and in exchange it costs eight
 //! bytes, no random number generator, and a bounds check to resolve.
 //!
-//! The obvious version of this is a plain index, and the obvious version is
-//! broken. Remove entry 7, add another, and every index 7 still held anywhere
-//! now points at the new entry: a dangling reference with no pointer in
-//! sight, and no crash to tell you. The generation counter is the fix. Each
-//! slot counts how many times it has been used; a handle remembers which time
-//! it was made for; `get` compares the two and hands back null when they have
-//! parted company.
+//! The obvious version is a plain index, and it is broken: remove entry 7, add
+//! another, and every index 7 still held now points at the new entry - a
+//! dangling reference with no pointer in sight and no crash to tell you. The
+//! generation counter is the fix. Each slot counts how often it has been used,
+//! a handle remembers which use it was made for, and `get` returns null when
+//! the two have parted company.
 //!
 //! ```zig
 //! var meshes: handle.Table(Mesh) = .empty;

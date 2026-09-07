@@ -24,10 +24,9 @@
 //!   * The text survives a URL, a shell, a filename and being read aloud,
 //!     which base64 and the dashed UUID form do not.
 //!
-//! It is a value, prefix and all: 80 bytes with nothing to allocate and
-//! nothing to free. The unused tail of the prefix is always zeroed, so two
-//! ids holding the same text are identical byte-for-byte and a `TypeId` works
-//! directly as a `std.AutoHashMap` key.
+//! It is a value, prefix and all: 80 bytes with nothing to allocate. The unused
+//! tail of the prefix is always zeroed, so two ids holding the same text are
+//! identical byte-for-byte and a `TypeId` works as a `std.AutoHashMap` key.
 
 const std = @import("std");
 const testing = std.testing;

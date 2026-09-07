@@ -3,11 +3,10 @@
 //! A 128-bit name for a thing, in the layout RFC 9562 fixes.
 //!
 //! Sixteen bytes is enough that two machines that have never spoken can each
-//! mint one and be confident they did not collide. That is the whole trick:
-//! no server hands these out, no table has to be locked, and a name minted
-//! offline on a laptop is as good as one minted in a datacentre. What it
-//! costs is sixteen bytes, and thirty-six characters of text that no reader
-//! will ever recognise.
+//! mint one and be confident they did not collide. That is the whole trick: no
+//! server hands these out, no table is locked, and a name minted offline is as
+//! good as one from a datacentre. The cost is thirty-six characters of text no
+//! reader will ever recognise.
 //!
 //! Four ways to make one, and the choice is about what the id should be
 //! correlated with:
@@ -20,11 +19,10 @@
 //!               text, so a path becomes an id with nothing written down.
 //!   `fromBytes` sixteen bytes that already mean something elsewhere.
 //!
-//! The bytes are stored in the order they are written, so a `Uuid` can be
-//! memcpy'd into a file and read back on any machine, and byte order is also
-//! numeric order and - for `sortable` - the order the ids were made in. It is
-//! a value: copy it, compare it with `std.meta.eql`, use it as a
-//! `std.AutoHashMap` key.
+//! The bytes are stored in the order they are written, so a `Uuid` memcpy'd
+//! into a file reads back on any machine, and byte order is also numeric order
+//! - and, for `sortable`, the order the ids were made in. It is a value: copy
+//! it, compare it with `std.meta.eql`, use it as a `std.AutoHashMap` key.
 
 const std = @import("std");
 const testing = std.testing;
