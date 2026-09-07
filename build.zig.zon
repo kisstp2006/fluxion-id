@@ -5,7 +5,12 @@
     .version = "0.1.0",
     .minimum_zig_version = "0.16.0",
     .fingerprint = 0xc8734d55faefd1fb,
-    .dependencies = .{},
+    .dependencies = .{
+        .fluxion_encoding = .{
+            .url = "git+https://github.com/kisstp2006/fluxion-encoding#3435f034b0ad3c6d826ceda4f3daa4e08adb65b3",
+            .hash = "fluxion_encoding-0.1.0-09HveBZmAgCmpSNOKGdd_tt2W2OlnMtMyd8IVRfJBtBY",
+        },
+    },
     .paths = .{
         "build.zig",
         "build.zig.zon",

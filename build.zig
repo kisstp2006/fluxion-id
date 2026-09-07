@@ -6,12 +6,21 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
+    // fluxion-encoding: hex, which is the text a UUID is written in.
+    const encoding = b.dependency("fluxion_encoding", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
     // The importable module. Consumers do:
     //   const ids = @import("fluxion_id");
     const mod = b.addModule("fluxion_id", .{
         .root_source_file = b.path("src/root.zig"),
         .target = target,
         .optimize = optimize,
+        .imports = &.{
+            .{ .name = "fluxion_encoding", .module = encoding.module("fluxion_encoding") },
+        },
     });
 
     // zig build test
